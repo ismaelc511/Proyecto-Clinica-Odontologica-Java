@@ -6,6 +6,7 @@ window.addEventListener('load', function () {
 
    formulario.addEventListener('submit', function (event) {
 
+       event.preventDefault();
        let paciente_id = document.querySelector('#paciente_id').value;
 
 
@@ -18,12 +19,10 @@ window.addEventListener('load', function () {
 
        const formData = {
 
-           id: document.querySelector('#nombre').value,
-
-           titulo: document.querySelector('#apellido').value,
-
-           categoria: document.querySelector('#dni').value,
-
+           id: document.querySelector('#paciente_id').value,
+           nombre: document.querySelector('#nombre').value,
+           apellido: document.querySelector('#apellido').value,
+           matricula: document.querySelector('#dni').value
 
 
        };
@@ -89,10 +88,10 @@ window.addEventListener('load', function () {
 
              let paciente = data;
 
-             document.querySelector('#id').value = paciente.id;
+             document.querySelector('#paciente_id').value = paciente.id;
              document.querySelector('#nombre').value = paciente.nombre;
              document.querySelector('#apellido').value = paciente.apellido;
-             document.querySelector('#dni').value = paciente.matricula;
+             document.querySelector('#dni').value = paciente.dni;
 
 
              //el formulario por default está oculto y al editar se habilita

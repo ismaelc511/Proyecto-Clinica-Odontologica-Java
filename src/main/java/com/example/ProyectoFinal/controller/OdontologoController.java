@@ -48,7 +48,7 @@ public class OdontologoController {
         return ResponseEntity.ok(odontologoService.guardar(odontologo));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Odontologo> actulizar(@RequestBody Odontologo odontologo)throws ResourceNotFoundException{
         return ResponseEntity.ok(odontologoService.actualizar(odontologo));
     }

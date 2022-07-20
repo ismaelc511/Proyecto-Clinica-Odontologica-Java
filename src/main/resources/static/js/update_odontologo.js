@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
        //para poder identificarlo y modificarlo para no cargarlo como nuevo
 
        const formData = {
-           id: document.querySelector('#odontolgo_id').value,
+           id: document.querySelector('#odontologo_id').value,
            nombre: document.querySelector('#nombre').value,
            apellido: document.querySelector('#apellido').value,
            matricula: document.querySelector('#matricula').value
@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
        //invocamos utilizando la función fetch la API odontologos con el método PUT que modificará
        //al odontologo que enviaremos en formato JSON
 
-       const url = '/odontologos';
+       const url = '/odontologos/update/'+formData.id;
        const settings = {
            method: 'PUT',
            headers: {

@@ -22,7 +22,9 @@ public class OdontologoService {
 
     public Odontologo guardar(Odontologo odontologo){
         logger.info("Se ha guardado");
-        return odontologoRepository.save(odontologo);
+        return odontologoRepository.saveAndFlush(odontologo);
+
+        //return odontologoRepository.save(odontologo);
     }
 
     public Odontologo buscar(Integer id) {
