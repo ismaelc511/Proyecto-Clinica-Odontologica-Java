@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/odontologos")
+@CrossOrigin("*")
+
 public class OdontologoController {
     //Se inyecta la dependencia
 
