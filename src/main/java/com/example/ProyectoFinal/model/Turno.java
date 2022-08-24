@@ -30,7 +30,11 @@ public class Turno {
         this.odontologo = odontologo;
         this.fecha = fecha;
     }
-
+    public Turno(Paciente paciente, Odontologo odontologo, Date fecha) {
+        this.paciente = paciente;
+        this.odontologo = odontologo;
+        this.fecha = fecha;
+    }
     public Integer getId() {
         return id;
     }

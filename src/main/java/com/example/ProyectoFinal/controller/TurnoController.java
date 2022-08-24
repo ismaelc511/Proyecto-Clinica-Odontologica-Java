@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/turnos")
+@CrossOrigin("*")
 public class TurnoController {
     //Se inyecta la dependencia
     @Autowired

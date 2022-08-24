@@ -12,12 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
+@CrossOrigin("*")
 public class PacienteController {
     //Se inyecta la dependencia
     @Autowired
     private PacienteService pacienteService;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Paciente> buscar(@PathVariable Integer id){
         Paciente paciente = pacienteService.buscar(id);
         if(paciente != null){
@@ -32,7 +33,7 @@ public class PacienteController {
         return ResponseEntity.ok(pacienteService.buscarTodos());
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> eliminar(@PathVariable Integer id) throws ResourceNotFoundException {
         pacienteService.eliminar(id);
         return ResponseEntity.ok().body("Eliminado");
