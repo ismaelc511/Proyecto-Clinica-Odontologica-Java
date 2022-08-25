@@ -1,36 +1,37 @@
 package com.example.ProyectoFinal.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "turnos")
 public class Turno {
     @Id
+    @SequenceGenerator(name = "turno_secuencia", sequenceName = "turno_secuencia", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "turno_secuencia")
     private Integer id;
 
     //Relaciones con otras clases
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente_id")
+    @ManyToOne
+    @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "odontologo_id")
+    @ManyToOne
+    @JoinColumn(name = "odontolgo_id", nullable = false)
     private Odontologo odontologo;
 
-    private Date fecha;
+    private LocalDate fecha;
 
     public Turno() {
     }
 
-    public Turno(Integer id, Paciente paciente, Odontologo odontologo, Date fecha) {
+    public Turno(Integer id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
     }
-    public Turno(Paciente paciente, Odontologo odontologo, Date fecha) {
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha) {
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
@@ -59,11 +60,11 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public Date getFecha() {
+    public LocalDate getDate() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setDate(LocalDate fecha) {
         this.fecha = fecha;
     }
 }
