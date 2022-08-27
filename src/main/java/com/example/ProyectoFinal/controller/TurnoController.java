@@ -3,9 +3,12 @@ package com.example.ProyectoFinal.controller;
 import com.example.ProyectoFinal.exceptions.BadRequestException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Turno;
+import com.example.ProyectoFinal.model.grapper.CTurno;
 import com.example.ProyectoFinal.service.ITurnoService;
 import com.example.ProyectoFinal.service.TurnoService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +40,21 @@ public class TurnoController {
         return ResponseEntity.ok(turnoService.listarTurnos());
     }
 
-    @PostMapping
-    public ResponseEntity<Turno> guardar(@RequestBody Turno turno) throws BadRequestException {
-        return ResponseEntity.ok(turnoService.saveTurno(turno));
+    @PostMapping("/guardar")
+    public ResponseEntity<Turno> guardar(@RequestBody String turno) throws BadRequestException {
+        Gson gson = new Gson();
+        CTurno obj = new CTurno();
+        try{
+            obj = gson.fromJson(turno, CTurno.class);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Turno objTransaccional = new Turno();
+        if(obj != null){
+            objTransaccional = new Turno(obj);
+            turnoService.saveTurno(objTransaccional);
+        }
+        return ResponseEntity.ok(objTransaccional);
     }
 
 

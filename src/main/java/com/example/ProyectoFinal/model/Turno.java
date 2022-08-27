@@ -1,5 +1,7 @@
 package com.example.ProyectoFinal.model;
 
+import com.example.ProyectoFinal.model.grapper.CTurno;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -35,6 +37,11 @@ public class Turno {
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
+    }
+    public Turno(CTurno obj){
+        this.fecha = LocalDate.parse(obj.getDate());
+        this.paciente = obj.getPaciente();
+        this.odontologo = obj.getOdontologo();
     }
     public Integer getId() {
         return id;
